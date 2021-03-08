@@ -5,24 +5,32 @@ import { fontSizes, spacing } from '../utils/sizes';
 
 const minutesToMillis = (min) => min * 1000 * 60;
 
-export const Countdown = ({ minutes = 20, isPaused }) => {
+export const Countdown = ({ minutes = 2, isPaused, onProgress, onEnd }) => {
   const interval = React.useRef(null);
 
   const countDown = () => {
     setMillis((time) => {
       if (time === 0) {
-        // do more stuff here
+        clearInterval(interval.current);
+        onEnd();
         return time;
       }
       const timeLeft = time - 1000;
-      // report the progress
+      onProgress(timeLeft / minutesToMillis(minutes));
       return timeLeft;
     });
   };
 
   useEffect(() => {
+    setMillis(minutesToMillis(minutes));
+  }, [minutes])
+
+  useEffect(() => {
     if (isPaused) {
-      return; 
+      if (interval.current) {
+        clearInterval(interval.current);
+        return;
+      }
     }
 
     interval.current = setInterval(countDown, 1000);
