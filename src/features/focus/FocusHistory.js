@@ -39,11 +39,11 @@ export const FocusHistory = ({ focusHistory, onClear }) => {
 const styles = StyleSheet.create({
   historyItem: (status) => ({
     color: status > 1 ? 'red' : 'green',
-    fontSizes: fontSizes.md,
+    fontSize: fontSizes.md,
   }),
   title: {
     color: colors.white,
-    fontSizes: fontSizes.md,
+    fontSize: fontSizes.md,
   },
   clearContainer: {
     alignItems: 'center',

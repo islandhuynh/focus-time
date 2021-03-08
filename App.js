@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const STATUSES = {
   COMPLETE: 1,
-  CANCELLED: 2,
+  CANCELLED: 2
 };
 export default function App() {
   const [focusSubject, setFocusSubject] = useState(null);
